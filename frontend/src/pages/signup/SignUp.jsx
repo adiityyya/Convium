@@ -20,6 +20,7 @@ const SignUp = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		//function ko dediye sare inputs
 		await signup(inputs);
 	};
 

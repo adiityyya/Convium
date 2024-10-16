@@ -8,10 +8,12 @@ const protectRoute = async (req, res, next) => {
 		if (!token) {
 			return res.status(401).json({ error: "Unauthorized - No Token Provided" });
 		}
-
+		
+		//will return userId
 		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-		if (!decoded) {
+		//decoded is the payload which is indeed userId which we set while building a token.
+		if (!decoded) { 
 			return res.status(401).json({ error: "Unauthorized - Invalid Token" });
 		}
 
@@ -21,10 +23,14 @@ const protectRoute = async (req, res, next) => {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		req.user = user;
+		//user is the object stored in our db.
 
+		//added extra info in the request.
+		req.user = user;
+		
 		next();
-	} catch (error) {
+	} 
+	catch (error) {
 		console.log("Error in protectRoute middleware: ", error.message);
 		res.status(500).json({ error: "Internal server error" });
 	}

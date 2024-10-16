@@ -5,11 +5,12 @@ import useLogin from "../../hooks/useLogin";
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-
 	const { loading, login } = useLogin();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		//after getting all the data, from the input, call this login function taking 2 params.
+		
 		await login(username, password);
 	};
 

@@ -11,7 +11,9 @@ const SearchInput = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
 		if (!search) return;
+
 		if (search.length < 3) {
 			return toast.error("Search term must be at least 3 characters long");
 		}
@@ -21,7 +23,8 @@ const SearchInput = () => {
 		if (conversation) {
 			setSelectedConversation(conversation);
 			setSearch("");
-		} else toast.error("No such user found!");
+		} 
+		else toast.error("No such user found!");
 	};
 	return (
 		<form onSubmit={handleSubmit} className='flex items-center gap-2'>

@@ -7,7 +7,9 @@ const useLogout = () => {
 	const { setAuthUser } = useAuthContext();
 
 	const logout = async () => {
+
 		setLoading(true);
+
 		try {
 			const res = await fetch("/api/auth/logout", {
 				method: "POST",
@@ -19,14 +21,17 @@ const useLogout = () => {
 			}
 
 			localStorage.removeItem("chat-user");
+
 			setAuthUser(null);
-		} catch (error) {
+		} 
+		catch (error) {
 			toast.error(error.message);
-		} finally {
+		} 
+		finally {
 			setLoading(false);
 		}
 	};
-
+	
 	return { loading, logout };
 };
 export default useLogout;
